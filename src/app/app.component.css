@@ -1,0 +1,27 @@
+* {
+    font-family: 'Nunito', sans-serif;
+}
+
+.title {
+    text-align: center;
+    color: crimson;
+    font-size: 200%;
+    margin: 0;
+}
+
+.total {
+    text-align: center;
+    color: #444;
+    font-size: 120%;
+    margin: 0 0 10px;
+}
+
+.item {
+    color: #666;
+    font-size: 14px;
+    border: 1px solid #eee;
+    border-bottom-width: 3px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
