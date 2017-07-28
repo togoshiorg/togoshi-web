@@ -3,13 +3,13 @@ import { translateData } from './data/pokemon';
 
 @Component({
   selector: 'sprite',
-  template: `
-    <img src="http://www.pokestadium.com/sprites/xy/{{name}}.gif">
-  `
+  template: `<img src={{url}}>`
 })
 export default class SpriteComponent {
   @Input() id: number;
+  @Input() isShiny: boolean;
   name: string;
+  url: string;
   translateData: Array<any>;
   constructor() {
     this.translateData = translateData;
@@ -17,5 +17,6 @@ export default class SpriteComponent {
   ngOnInit() {
     const number = this.id - 1;
     this.name = this.translateData[number].en.toLowerCase();
+    this.url = `http://www.pokestadium.com/sprites/xy/${this.isShiny?'shiny/':''}${this.name}.gif`;
   }
 }

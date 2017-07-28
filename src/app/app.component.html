@@ -4,7 +4,7 @@
 </div>
 <p class="total">Total: {{length}}</p>
 <div class="item" *ngFor="let item of getlist | async">
-  <sprite [id]="item.id"></sprite><br>
+  <sprite [id]="item.id" [isShiny]="item.isShiny"></sprite><br>
   id: {{item.id}}<br>
   cp: {{item.cp}}<br>
   time: {{item.time}}<br>
