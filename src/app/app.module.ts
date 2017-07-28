@@ -5,12 +5,12 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
-import SpriteComponent from './sprite.component';
+import PokeCharacterComponent from './poke-character.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SpriteComponent
+    PokeCharacterComponent
   ],
   imports: [
     BrowserModule,

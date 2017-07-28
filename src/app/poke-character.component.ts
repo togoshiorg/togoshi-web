@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { translateData } from './data/pokemon';
 
 @Component({
-  selector: 'sprite',
+  selector: 'poke-character',
   template: `<img src={{url}}>`
 })
 export default class SpriteComponent {
