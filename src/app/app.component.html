@@ -4,7 +4,7 @@
 </div>
 <p class="total">Total: {{length}}</p>
 <div class="textbox">
-  <input #box (keyup.enter)="enter(box.value)">
+  <input #box (keyup.enter)="enter(box.value)" placeholder="username">
 </div>
 <div class="item" *ngFor="let item of getlist | async">
   <poke-character [item]="item"></poke-character>
