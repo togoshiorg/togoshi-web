@@ -24,4 +24,7 @@ export class AppComponent {
         this.length = snapshot.length;
       });
   }
+  enter(value: string) {
+    console.log(value);
+  }
 }

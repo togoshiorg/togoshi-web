@@ -15,3 +15,17 @@
     font-size: 120%;
     margin: 0 0 10px;
 }
+
+.textbox {
+    text-align: center;
+    padding: 20px;
+}
+
+.textbox input {
+    font-size: 16px;
+    padding: 5px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
