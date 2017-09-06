@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import fbobj from './firebase/';
-import { Container, Header, Icon, Card, Image, Label } from 'semantic-ui-react';
+import { Container, Header, Icon, Card, Image, Label, Statistic, Grid } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 import './App.css';
 
@@ -56,13 +56,13 @@ class App extends Component {
   render() {
     return (
       <Container style={{ margin: 20 }}>
-        <Header as='h2' icon textAlign='center'>
-          <Icon name='gamepad' color="grey" />
-          <Header.Content>togoshi-web</Header.Content>
-        </Header>
-        <Header as='h3' textAlign='center'>
-          Total: {this.state.getlistArray.length}
-        </Header>
+        <Header as='h2' textAlign='center'>togoshi-web</Header>
+        <Grid textAlign="center" style={{ margin: '20px 0 30px' }}>
+          <Statistic>
+            <Statistic.Label>Total</Statistic.Label>
+            <Statistic.Value>{this.state.getlistArray.length}</Statistic.Value>
+          </Statistic>
+        </Grid>
         {this.getlistArea()}
       </Container>
     );
