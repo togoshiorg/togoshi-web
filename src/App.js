@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import fbobj from './firebase/';
-import { Container, Header, Icon, Card, Image } from 'semantic-ui-react';
+import { Container, Header, Icon, Card, Image, Label } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 import './App.css';
 
@@ -37,7 +37,10 @@ class App extends Component {
             <Card.Description><Icon name='user' color="grey" /> {value.user}</Card.Description>
           </Card.Content>
           <Card.Content extra>
-            <Card.Description>CP: {value.cp}</Card.Description>
+            <Card.Description>
+              <Label>CP<Label.Detail>{value.cp}</Label.Detail></Label>
+              {value.isShiny ? <Label as='a' content='shiny' icon='star' /> : null}
+            </Card.Description>
           </Card.Content>
         </Card>
       );
