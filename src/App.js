@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import fbobj from './firebase/';
-import { Container, Header, Icon, Card, Image, Label, Statistic, Grid, Button } from 'semantic-ui-react';
+import { Container, Header, Icon, Card, Image, Label, Statistic, Grid, Button, Loader } from 'semantic-ui-react';
 import ReactPaginate from 'react-paginate';
 import { translateData } from './data/pokemon';
 import 'semantic-ui-css/semantic.min.css';
@@ -95,7 +95,7 @@ class App extends Component {
   }
   getlistArea() {
     if (this.state.getlistArray.length === 0) {
-      return <div style={{ textAlign: 'center' }}><Icon name='spinner' color="grey" size="large" loading /></div>;
+      return <Loader active inline='centered'>Loading</Loader>;
     } else {
       return <Card.Group style={{ justifyContent: 'center' }}>{this.getlist()}</Card.Group>;
     }
