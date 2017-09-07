@@ -27,11 +27,14 @@ class App extends Component {
   }
   getlist() {
     return this.state.getlistArray.map((value, index) => {
+      const nameJa = translateData[value.id - 1].ja;
+      const nameEn = translateData[value.id - 1].en.toLowerCase();
+      const url = `http://www.pokestadium.com/sprites/xy/${value.isShiny?'shiny/':''}${nameEn}.gif`;
       return (
         <Card key={`${index}-${value.id}`}>
           <Card.Content>
-            <Image floated='right' size='mini' src='http://www.pokestadium.com/sprites/xy/ditto.gif' />
-            <Card.Header>{translateData[value.id - 1].ja}</Card.Header>
+            <Image floated='right' size='mini' src={url} />
+            <Card.Header>{nameJa}</Card.Header>
             <Card.Meta>No: {value.id}</Card.Meta>
             <Card.Description><Icon name='time' color="grey" /> {value.time}</Card.Description>
             <Card.Description><Icon name='user' color="grey" /> {value.user}</Card.Description>
