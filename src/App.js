@@ -17,9 +17,7 @@ class App extends Component {
     };
   }
   componentDidMount() {
-    this.getLatestList((snapshot) => {
-      this.updateList(snapshot);
-    });
+    this.updateAllList();
   }
   getLatestList = (cb) => {
     getlist.once('value').then((snapshot) => {
@@ -34,8 +32,13 @@ class App extends Component {
       getlistArray: snapshot.reverse(),
     });
   }
+  updateAllList = () => {
+    this.getLatestList((snapshot) => {
+      this.updateList(snapshot);
+    });
+  }
   getlist() {
-    const viewItems = this.state.getlistArray.filter((element, index, array) => {
+    const viewItems = this.state.getlistArray.filter((element, index) => {
       return index >= (this.state.pageCurrent * 9) && index < (this.state.pageCurrent * 9 + 9);
     });
     return viewItems.map((value, index) => {
