@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import fbobj from './firebase/';
-import { Container, Header, Icon, Card, Image, Label, Statistic, Grid } from 'semantic-ui-react';
+import { Container, Header, Icon, Card, Image, Label, Statistic, Grid, Button } from 'semantic-ui-react';
 import ReactPaginate from 'react-paginate';
 import { translateData } from './data/pokemon';
 import 'semantic-ui-css/semantic.min.css';
@@ -14,6 +14,7 @@ class App extends Component {
     this.state = {
       getlistArray: [],
       pageCurrent: 0,
+      selectUser: '',
     };
   }
   componentDidMount() {
@@ -33,9 +34,32 @@ class App extends Component {
     });
   }
   updateAllList = () => {
+    this.setState({
+      getlistArray: [],
+      pageCurrent: 0,
+      selectUser: '',
+    });
     this.getLatestList((snapshot) => {
       this.updateList(snapshot);
     });
+  }
+  updateUserList = () => {
+    this.setState({ getlistArray: [] });
+    this.getLatestList((snapshot) => {
+      const userlist = snapshot.filter((element, index) => {
+        return (element.user === this.state.selectUser);
+      });
+      this.setState({
+        getlistArray: userlist.reverse(),
+      });
+    });
+  }
+  updateSelectUser = (selectUser) => {
+    this.setState({
+      selectUser,
+      pageCurrent: 0,
+    });
+    this.updateUserList();
   }
   getlist() {
     const viewItems = this.state.getlistArray.filter((element, index) => {
@@ -52,7 +76,12 @@ class App extends Component {
             <Card.Header>{nameJa}</Card.Header>
             <Card.Meta>No: {value.id}</Card.Meta>
             <Card.Description><Icon name='time' color="grey" /> {value.time}</Card.Description>
-            <Card.Description><Icon name='user' color="grey" /> {value.user}</Card.Description>
+            <Card.Description>
+              <Icon name='user' color="grey" /> 
+              <a onClick={() => this.updateSelectUser(value.user)}>
+                {value.user}
+              </a>
+              </Card.Description>
           </Card.Content>
           <Card.Content extra>
             <Card.Description>
@@ -77,7 +106,9 @@ class App extends Component {
         <Header as='h2' textAlign='center'>togoshi-web</Header>
         <Grid textAlign="center" style={{ margin: '20px 0 30px' }}>
           <Statistic>
-            <Statistic.Label>Total</Statistic.Label>
+            <Statistic.Label>
+              {this.state.selectUser === '' ? 'Total' : `${this.state.selectUser} が捕まえたポケモン`}
+            </Statistic.Label>
             <Statistic.Value>{this.state.getlistArray.length}</Statistic.Value>
           </Statistic>
         </Grid>
@@ -88,6 +119,7 @@ class App extends Component {
                 pageCurrent: e.selected,
               });
             }}
+            forcePage={this.state.pageCurrent}
             pageCount={this.state.getlistArray.length / 9}
             pageRangeDisplayed={3}
             marginPagesDisplayed={1}
@@ -99,6 +131,9 @@ class App extends Component {
             breakClassName="ui button break disabled"
           />
         </div>
+        {this.state.selectUser === '' ? null : <div style={{ textAlign: 'center', margin: 20 }}>
+          <Button onClick={this.updateAllList}>すべて表示する</Button>
+        </div>}
         {this.getlistArea()}
       </Container>
     );
