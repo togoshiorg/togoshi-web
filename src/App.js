@@ -84,7 +84,7 @@ class App extends Component {
             marginPagesDisplayed={1}
             containerClassName="ui buttons"
             activeClassName="ui button primary"
-            pageClassName="ui button"
+            pageClassName="ui button page"
             previousClassName="ui button"
             nextClassName="ui button"
             breakClassName="ui button break disabled"
