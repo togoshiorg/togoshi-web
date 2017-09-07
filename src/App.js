@@ -72,7 +72,6 @@ class App extends Component {
             <Statistic.Value>{this.state.getlistArray.length}</Statistic.Value>
           </Statistic>
         </Grid>
-        {this.getlistArea()}
         <div className="paginate">
           <ReactPaginate
             onPageChange={(e) => {
@@ -91,6 +90,7 @@ class App extends Component {
             breakClassName="ui button break disabled"
           />
         </div>
+        {this.getlistArea()}
       </Container>
     );
   }
