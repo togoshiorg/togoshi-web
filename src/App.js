@@ -13,6 +13,7 @@ class App extends Component {
     super();
     this.state = {
       getlistArray: [],
+      pageCurrent: 0,
     };
   }
   componentDidMount() {
@@ -29,7 +30,7 @@ class App extends Component {
   }
   getlist() {
     const viewItems = this.state.getlistArray.filter((element, index, array) => {
-      return index < 9;
+      return index >= (this.state.pageCurrent * 9) && index < (this.state.pageCurrent * 9 + 9);
     });
     return viewItems.map((value, index) => {
       const nameJa = translateData[value.id - 1].ja;
@@ -74,7 +75,11 @@ class App extends Component {
         {this.getlistArea()}
         <div className="paginate">
           <ReactPaginate
-            onPageChange={(e) => console.log(e)}
+            onPageChange={(e) => {
+              this.setState({
+                pageCurrent: e.selected,
+              });
+            }}
             pageCount={this.state.getlistArray.length / 9}
             pageRangeDisplayed={3}
             marginPagesDisplayed={1}
