@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import fbobj from './firebase/';
 import { Container, Header, Icon, Card, Image, Label, Statistic, Grid } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
+import { translateData } from './data/pokemon';
 
 const getlist = fbobj.db.ref('getlist');
 
@@ -30,7 +31,7 @@ class App extends Component {
         <Card key={`${index}-${value.id}`}>
           <Card.Content>
             <Image floated='right' size='mini' src='http://www.pokestadium.com/sprites/xy/ditto.gif' />
-            <Card.Header>メタモン</Card.Header>
+            <Card.Header>{translateData[value.id - 1].ja}</Card.Header>
             <Card.Meta>No: {value.id}</Card.Meta>
             <Card.Description><Icon name='time' color="grey" /> {value.time}</Card.Description>
             <Card.Description><Icon name='user' color="grey" /> {value.user}</Card.Description>
