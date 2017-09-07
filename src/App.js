@@ -17,15 +17,21 @@ class App extends Component {
     };
   }
   componentDidMount() {
-    getlist.once('value').then((snapshot) => this.updateList(snapshot));
-  }
-  updateList(snapshot) {
-    const firebaseSnapshot = snapshot.val();
-    const snapshotArray = Object.keys(firebaseSnapshot).map((value) => {
-      return firebaseSnapshot[value];
+    this.getLatestList((snapshot) => {
+      this.updateList(snapshot);
     });
+  }
+  getLatestList = (cb) => {
+    getlist.once('value').then((snapshot) => {
+      const firebaseSnapshot = snapshot.val();
+      return Object.keys(firebaseSnapshot).map((value) => {
+        return firebaseSnapshot[value];
+      });
+    }).then((snapshot) => cb ? cb(snapshot) : null);
+  }
+  updateList = (snapshot) => {
     this.setState({
-      getlistArray: snapshotArray.reverse(),
+      getlistArray: snapshot.reverse(),
     });
   }
   getlist() {
