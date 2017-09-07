@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
 import fbobj from './firebase/';
-import { Container, Header, Icon, Card, Image, Label, Statistic, Grid, Button, Loader } from 'semantic-ui-react';
+import { Container, Header, Icon, Card, Image, Label, Statistic, Grid, Button, Dropdown, Loader } from 'semantic-ui-react';
 import ReactPaginate from 'react-paginate';
 import { translateData } from './data/pokemon';
 import 'semantic-ui-css/semantic.min.css';
 import './paginate.css';
 
 const getlist = fbobj.db.ref('getlist');
+const displayDropdown = [
+  { text: '1', value: 1 },
+  { text: '2', value: 2 },
+  { text: '3', value: 3 },
+  { text: '4', value: 4 },
+  { text: '5', value: 5 },
+  { text: '6', value: 6 },
+  { text: '7', value: 7 },
+  { text: '8', value: 8 },
+  { text: '9', value: 9 },
+];
 
 class App extends Component {
   constructor() {
@@ -14,6 +25,7 @@ class App extends Component {
     this.state = {
       getlistArray: [],
       pageCurrent: 0,
+      pageCount: 9,
       selectUser: '',
     };
   }
@@ -61,9 +73,12 @@ class App extends Component {
     });
     this.updateUserList();
   }
+  updatePageCount = (pageCount) => {
+    this.setState({ pageCount });
+  }
   getlist() {
     const viewItems = this.state.getlistArray.filter((element, index) => {
-      return index >= (this.state.pageCurrent * 9) && index < (this.state.pageCurrent * 9 + 9);
+      return index >= (this.state.pageCurrent * this.state.pageCount) && index < (this.state.pageCurrent * this.state.pageCount + this.state.pageCount);
     });
     return viewItems.map((value, index) => {
       const nameJa = translateData[value.id - 1].ja;
@@ -112,6 +127,15 @@ class App extends Component {
             <Statistic.Value>{this.state.getlistArray.length}</Statistic.Value>
           </Statistic>
         </Grid>
+        <div style={{ textAlign: 'center', margin: 20 }}>
+          Number of display items : <Dropdown inline
+            options={displayDropdown}
+            defaultValue={displayDropdown[this.state.pageCount - 1].value}
+            onChange={(e, data) => {
+              this.updatePageCount(data.value);
+            }}
+          />
+        </div>
         <div className="paginate">
           <ReactPaginate
             onPageChange={(e) => {
@@ -120,7 +144,7 @@ class App extends Component {
               });
             }}
             forcePage={this.state.pageCurrent}
-            pageCount={this.state.getlistArray.length / 9}
+            pageCount={this.state.getlistArray.length / this.state.pageCount}
             pageRangeDisplayed={3}
             marginPagesDisplayed={1}
             containerClassName="ui buttons"
