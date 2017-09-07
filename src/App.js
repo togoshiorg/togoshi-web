@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import fbobj from './firebase/';
 import { Container, Header, Icon, Card, Image, Label, Statistic, Grid } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
-import './App.css';
 
 const getlist = fbobj.db.ref('getlist');
 
