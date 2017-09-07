@@ -1,0 +1,22 @@
+.paginate {
+    text-align: center;
+    margin: 20px;
+    padding-right: 40px;
+}
+
+.paginate .ui.button {
+    padding: 0;
+}
+
+.paginate .ui.button.break {
+    padding: .78571429em 1.5em .78571429em;
+}
+
+.paginate .ui.button > a {
+    display: inline-block;
+    padding: .78571429em 1.5em .78571429em;
+}
+
+.paginate .ui.button.primary > a {
+    color: #fff;
+}

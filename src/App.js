@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import fbobj from './firebase/';
 import { Container, Header, Icon, Card, Image, Label, Statistic, Grid } from 'semantic-ui-react';
-import 'semantic-ui-css/semantic.min.css';
+import ReactPaginate from 'react-paginate';
 import { translateData } from './data/pokemon';
+import 'semantic-ui-css/semantic.min.css';
+import './paginate.css';
 
 const getlist = fbobj.db.ref('getlist');
 
@@ -26,7 +28,10 @@ class App extends Component {
     });
   }
   getlist() {
-    return this.state.getlistArray.map((value, index) => {
+    const viewItems = this.state.getlistArray.filter((element, index, array) => {
+      return index < 9;
+    });
+    return viewItems.map((value, index) => {
       const nameJa = translateData[value.id - 1].ja;
       const nameEn = translateData[value.id - 1].en.toLowerCase();
       const url = `http://www.pokestadium.com/sprites/xy/${value.isShiny?'shiny/':''}${nameEn}.gif`;
@@ -67,6 +72,20 @@ class App extends Component {
           </Statistic>
         </Grid>
         {this.getlistArea()}
+        <div className="paginate">
+          <ReactPaginate
+            onPageChange={(e) => console.log(e)}
+            pageCount={this.state.getlistArray.length / 9}
+            pageRangeDisplayed={3}
+            marginPagesDisplayed={1}
+            containerClassName="ui buttons"
+            activeClassName="ui button primary"
+            pageClassName="ui button"
+            previousClassName="ui button"
+            nextClassName="ui button"
+            breakClassName="ui button break disabled"
+          />
+        </div>
       </Container>
     );
   }
