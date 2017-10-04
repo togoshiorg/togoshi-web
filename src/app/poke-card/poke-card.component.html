@@ -1,0 +1,25 @@
+<md-card class="poke-card" *ngFor="let poke of pokeLists">
+  <md-card-header>
+    <div md-card-avatar>
+      <img class="poke-thumbnail" src="{{poke.image}}" alt="レジロック">
+    </div>
+    <md-card-title>
+      {{poke.name}}
+    </md-card-title>
+    <md-card-subtitle>{{poke.no}}</md-card-subtitle>
+  </md-card-header>
+  <md-card-content>
+    <div class="description">
+      <i class="material-icons">access_time</i>
+      {{poke.date}}
+    </div>
+    <div class="description">
+      <i class="material-icons">face</i>
+      {{poke.human}}
+    </div>
+  </md-card-content>
+  <md-card-footer>
+    <div>
+    </div>
+  </md-card-footer>
+</md-card>

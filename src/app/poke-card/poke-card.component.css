@@ -1,0 +1,22 @@
+.poke-card {
+  width: 250px;
+  margin: 10px;
+}
+
+.poke-thumbnail {
+  width: 40px;
+}
+
+.description {
+  display: flex;
+  align-items: center;
+}
+
+.description + .description {
+  margin-top: 5px;
+}
+
+.material-icons {
+  font-size: 20px;
+  margin-right: 5px;
+}
