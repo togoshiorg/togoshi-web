@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
 
 import { PokeData } from './model/poke-data';
 
@@ -8,31 +10,10 @@ import { PokeData } from './model/poke-data';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
-  pokeLists: PokeData[] = [
-    {
-      cp: 9999,
-      date: "99-99-99",
-      human: "sasaki-hiroaki",
-      image: "http://www.pokestadium.com/sprites/xy/regirock.gif",
-      name: "ポケモン名",
-      no: 9999
-    },
-    {
-      cp: 9999,
-      date: "99-99-99",
-      human: "sasaki-hiroaki",
-      image: "http://www.pokestadium.com/sprites/xy/regirock.gif",
-      name: "ポケモン名",
-      no: 9999
-    },
-    {
-      cp: 9999,
-      date: "99-99-99",
-      human: "sasaki-hiroaki",
-      image: "http://www.pokestadium.com/sprites/xy/regirock.gif",
-      name: "ポケモン名",
-      no: 9999
-    }
-  ]
+
+  pokeLists: Observable<PokeData[]>;
+
+  constructor(db: AngularFireDatabase) {
+    this.pokeLists = db.list('getlist').valueChanges();
+  }
 }

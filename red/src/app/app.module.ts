@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule, MdToolbarModule } from '@angular/material';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { PokeCardComponent } from './poke-card/poke-card.component';
 
@@ -12,6 +15,8 @@ import { PokeCardComponent } from './poke-card/poke-card.component';
     PokeCardComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
     BrowserModule,
     BrowserAnimationsModule,
     MatCardModule,

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { PokeData } from '../model/poke-data';
+import { translateData } from '../data/pokemon';
 
 @Component({
   selector: 'app-poke-card',
@@ -8,6 +9,8 @@ import { PokeData } from '../model/poke-data';
   styleUrls: ['./poke-card.component.css']
 })
 export class PokeCardComponent implements OnInit {
+
+  translateData = translateData;
 
   @Input() pokeLists: PokeData[];
 

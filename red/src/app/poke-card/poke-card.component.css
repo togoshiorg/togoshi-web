@@ -3,8 +3,19 @@
   margin: 10px;
 }
 
+.mat-card-header {
+  justify-content: space-between;
+  flex-direction: row-reverse;
+}
+
+.poke-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
 .poke-thumbnail {
-  width: 40px;
+  max-width: 50px;
+  max-height: 55px;
 }
 
 .description {

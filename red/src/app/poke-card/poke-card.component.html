@@ -1,25 +1,25 @@
-<md-card class="poke-card" *ngFor="let poke of pokeLists">
+<md-card class="poke-card" *ngFor="let poke of pokeLists | async">
   <md-card-header>
     <div md-card-avatar>
-      <img class="poke-thumbnail" src="{{poke.image}}" alt="レジロック">
+      <img class="poke-thumbnail" src="http://www.pokestadium.com/sprites/xy/{{translateData[poke.id - 1].en | lowercase}}.gif" alt="{{translateData[poke.id - 1].ja}}">
     </div>
-    <md-card-title>
-      {{poke.name}}
+    <md-card-title class="poke-name">
+      {{translateData[poke.id - 1].ja}}
     </md-card-title>
-    <md-card-subtitle>{{poke.no}}</md-card-subtitle>
+    <md-card-subtitle>
+      <span>No.{{poke.id}}</span> / <span>cp:{{poke.cp}}</span>
+    </md-card-subtitle>
   </md-card-header>
   <md-card-content>
     <div class="description">
       <i class="material-icons">access_time</i>
-      {{poke.date}}
+      {{poke.time}}
     </div>
     <div class="description">
       <i class="material-icons">face</i>
-      {{poke.human}}
+      {{poke.user}}
     </div>
   </md-card-content>
   <md-card-footer>
-    <div>
-    </div>
   </md-card-footer>
 </md-card>
