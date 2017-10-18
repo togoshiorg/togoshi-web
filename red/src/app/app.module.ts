@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCardModule, MdToolbarModule } from '@angular/material';
+import { MatCardModule, MatPaginatorModule, MdToolbarModule } from '@angular/material';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
@@ -20,6 +20,7 @@ import { PokeCardComponent } from './poke-card/poke-card.component';
     BrowserModule,
     BrowserAnimationsModule,
     MatCardModule,
+    MatPaginatorModule,
     MdToolbarModule,
   ],
   exports: [

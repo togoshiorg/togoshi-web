@@ -11,9 +11,16 @@ import { PokeData } from './model/poke-data';
 })
 export class AppComponent {
 
-  pokeLists: Observable<PokeData[]>;
+  private pokeLists: Observable<PokeData[]>;
+  private size: number;
 
   constructor(db: AngularFireDatabase) {
-    this.pokeLists = db.list('getlist').valueChanges();
+    const list$ = db.list<PokeData>('getlist').valueChanges();
+    this.size = null;
+    this.pokeLists = list$.map(arr => arr.reverse());
+  }
+
+  pageEvent(e): void {
+    console.log(e);
   }
 }

@@ -1,3 +1,8 @@
+
+md-paginator {
+  justify-content: center;
+}
+
 app-poke-card {
   display: flex;
   justify-content: center;

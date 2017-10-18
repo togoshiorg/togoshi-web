@@ -1,3 +1,9 @@
 <md-toolbar>togoshi-web</md-toolbar>
-<p>total:704</p>
+
+<md-paginator [length]="size"
+              [pageSize]="10"
+              [pageSizeOptions]="[10, 20, 30]"
+              (page)="pageEvent($event)">
+</md-paginator>
+
 <app-poke-card [pokeLists]="pokeLists"></app-poke-card>
