@@ -18,6 +18,10 @@ export class AppComponent {
     const list$ = db.list<PokeData>('getlist').valueChanges();
     this.size = null;
     this.pokeLists = list$.map(arr => arr.reverse());
+
+    list$.subscribe(v => {
+      this.size = v.length;
+    });
   }
 
   pageEvent(e): void {

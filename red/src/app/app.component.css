@@ -1,3 +1,8 @@
+.total-num {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+}
 
 md-paginator {
   justify-content: center;
