@@ -1,4 +1,4 @@
-<md-card class="poke-card" *ngFor="let poke of pokeLists | async">
+<md-card class="poke-card" *ngFor="let poke of lists | async">
   <md-card-header>
     <div md-card-avatar>
       <img class="poke-thumbnail" src="http://www.pokestadium.com/sprites/xy/{{translateData[poke.id - 1].en | lowercase}}.gif" alt="{{translateData[poke.id - 1].ja}}">

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 
@@ -9,22 +9,33 @@ import { PokeData } from './model/poke-data';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  private pokeLists: Observable<PokeData[]>;
   private size: number;
+  private pokeAllLists: Observable<PokeData[]>;
+  private filteredLists: Observable<PokeData[]>;
 
-  constructor(db: AngularFireDatabase) {
-    const list$ = db.list<PokeData>('getlist').valueChanges();
+  constructor(private db: AngularFireDatabase) {
+  }
+
+  ngOnInit() {
+    const list = this.db.list<PokeData>('getlist').valueChanges();
     this.size = null;
-    this.pokeLists = list$.map(arr => arr.reverse());
+    this.filteredLists = this.pokeAllLists = list.map(arr => arr.reverse());
+    this.pageEvent({pageSize: 10, pageIndex: 0});
 
-    list$.subscribe(v => {
+    list.subscribe(v => {
       this.size = v.length;
     });
   }
 
-  pageEvent(e): void {
-    console.log(e);
+  /**
+   * ページネーションの変更を検知してフィルタリング
+   * @param e: object
+   */
+  private pageEvent(e) {
+    const start = e.pageSize * e.pageIndex;
+    const end = start + e.pageSize;
+    this.filteredLists = this.pokeAllLists.map(v => v.slice(start, end));
   }
 }

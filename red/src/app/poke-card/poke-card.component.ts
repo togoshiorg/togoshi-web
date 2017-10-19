@@ -12,7 +12,7 @@ export class PokeCardComponent implements OnInit {
 
   translateData = translateData;
 
-  @Input() pokeLists: PokeData[];
+  @Input() lists: PokeData[];
 
   constructor() { }
 
