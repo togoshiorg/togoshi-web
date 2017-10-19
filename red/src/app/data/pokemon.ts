@@ -113,7 +113,7 @@ export const translateData = [
   },
   {
     "ja": "ニドラン♀",
-    "en": "Nidoran♀"
+    "en": "Nidoranf"
   },
   {
     "ja": "ニドリーナ",
@@ -125,7 +125,7 @@ export const translateData = [
   },
   {
     "ja": "ニドラン♂",
-    "en": "Nidoran♂"
+    "en": "Nidoranm"
   },
   {
     "ja": "ニドリーノ",
@@ -329,7 +329,7 @@ export const translateData = [
   },
   {
     "ja": "カモネギ",
-    "en": "Farfetch'd"
+    "en": "Farfetchd"
   },
   {
     "ja": "ドードー",
@@ -485,7 +485,7 @@ export const translateData = [
   },
   {
     "ja": "バリヤード",
-    "en": "Mr. Mime"
+    "en": "Mr-mime"
   },
   {
     "ja": "ストライク",
@@ -1753,7 +1753,7 @@ export const translateData = [
   },
   {
     "ja": "マネネ",
-    "en": "Mime Jr."
+    "en": "Mime-jr"
   },
   {
     "ja": "ピンプク",
@@ -2673,7 +2673,7 @@ export const translateData = [
   },
   {
     "ja": "フラベベ",
-    "en": "Flab_b_"
+    "en": "Flabebe"
   },
   {
     "ja": "フラエッテ",
